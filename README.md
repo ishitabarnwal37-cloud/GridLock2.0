@@ -1,5 +1,5 @@
 # GridLock2.0
-- $ what\ is\ purpose\ of\ existence\ ? $
+- $what\ is\ purpose\ of\ existence\ ?$
 -  $is\ it\ to\ just\ stay\ in\ traffic\ ?$
 
 ## How to run the python file if I have not included the link : 

@@ -3,6 +3,4 @@ pandas
 matplotlib
 scikit-learn
 streamlit
-folium
-tensorflow 
-xgboost 
+catboost
