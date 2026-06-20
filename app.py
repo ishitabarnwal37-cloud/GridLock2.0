@@ -17,7 +17,7 @@ def load_prediction_engine():
     """Loads the compiled CatBoost model."""
     model = CatBoostClassifier()
     try:
-        model.load_model("traffic_management_model_Rudra.cbm")
+        model.load_model("traffic_management_model.cbm")
         return model
     except Exception as e:
         st.error(f"Critical System Failure: Model weights not found. Error: {e}")
@@ -139,8 +139,7 @@ if page == "🏠 Executive Home":
         st.write("- **Machine Learning:** CatBoost Gradient Boosting")
         st.write("- **Function:** Instantly verifies or rejects camera-flagged parking tickets.")
         st.write("- **Value:** Eliminates the human bottleneck in ticket processing, allowing for rapid enforcement.")
-        if st.button("Launch Command Center ➡️"):
-            st.warning("Please use the left sidebar to navigate to this module.")
+
 
     with col_b:
         st.success("#### 📦 Module 2: Flipkart Logistics API")
@@ -148,8 +147,7 @@ if page == "🏠 Executive Home":
         st.write("- **Spatial AI:** DBSCAN Density Clustering")
         st.write("- **Function:** Maps historical congestion chokepoints by specific hours and days.")
         st.write("- **Value:** Allows Flipkart routing algorithms to dynamically avoid gridlock and switch to EV 2-wheelers in dense zones.")
-        if st.button("Launch Logistics Intelligence ➡️"):
-            st.warning("Please use the left sidebar to navigate to this module.")
+        
 
 
 
