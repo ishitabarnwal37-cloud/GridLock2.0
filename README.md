@@ -40,7 +40,3 @@
             - Lets the warehouse in a certain know what sort of delivery fleet to deploy 
             - It does this by checking the number of violations in a street at a certain time. If the violations are higher than average , than there is a warning given. 
              
-
-> [!WARN]
-    > - the streamlit app code for violations detcted only has Outer Ring Road in the reroute warning part. either remove it or make it relative to the path chosen
-    > - default time placehoder is always given precedence over time that user has chosen. It ruins the ml model prediction in police command center 
