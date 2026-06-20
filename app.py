@@ -123,11 +123,10 @@ if page == "🏠 Executive Home":
     st.divider()
     
     
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Tickets Processed (YTD)", "148,431", "+12%")
-    col2.metric("AI Auto-Triage Rate", "84.2%", "Model Efficiency")
-    col3.metric("Human Hours Saved", "4,200 hrs", "Cost Reduction")
-    col4.metric("Delivery SLAs Saved", "18,000+", "Logistics Impact")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("AI Auto-Triage Rate", "84.2%", "Model Efficiency")
+    col2.metric("Human Hours Saved", "4,200 hrs", "Cost Reduction")
+    col3.metric("Delivery SLAs Saved", "18,000+", "Logistics Impact")
     
     st.divider()
     
