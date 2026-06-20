@@ -177,8 +177,12 @@ elif page == "🚨 Police Command Center":
         police_station = st.selectbox("Jurisdictional Police Station", POLICE_STATIONS)
         junction_name = st.selectbox("Junction Name", JUNCTIONS) 
         st.markdown("##### Temporal Data")
-        ticket_date = st.date_input("Violation Date", datetime.now().date())
-        ticket_time = st.time_input("Violation Time", datetime.now().time())
+        
+        if "default_time" not in st.session_state:
+            default_date = datetime.now().date()
+            default_time = datetime.now().time()
+        ticket_date = st.date_input("Violation Date", value = default_date)
+        ticket_time = st.time_input("Violation Time", value = default_time)
 
     with col_geo:
         st.subheader("2. Geospatial Locator")
@@ -290,10 +294,10 @@ elif page == "🚨 Police Command Center":
         with res_col1:
             st.markdown("#### AI Prediction")
             if prob_approved > 0.40: 
-                st.success(f"### Status: ✅ **APPROVED**")
+                st.success(f"### Status:  **APPROVED**")
                 st.metric("Approval Confidence", f"{prob_approved*100:.1f}%")
             else:
-                st.error(f"### Status: ❌ **REJECTED**")
+                st.error(f"### Status:  **REJECTED**")
                 st.metric("Rejection Confidence", f"{probabilities[0]*100:.1f}%")
             st.markdown("#### Geographic Logic")
             st.write(f"**Assigned Region:** `{assigned_cluster}`")
@@ -367,11 +371,11 @@ elif page == "📦 Flipkart Logistics API":
             area_violations = len(filtered_df) 
         
             if area_violations < 50:
-                st.success(f"✅ Route to {destination} is Clear. Dispatch Authorized.")
+                st.success(f"Route to {destination} is Clear. Dispatch Authorized.")
                 # 
             else:
-                st.error(f"⚠️ High Congestion Alert! {area_violations} violations detected in {destination}.")
-                st.warning("Recommendation: Reroute via Outer Ring Road or delay dispatch by 60 minutes.")
+                st.error(f"High Congestion Alert! {area_violations} violations detected in {destination}.")
+                st.warning("Recommendation: Reroute via Outer Ring Road or delay dispatch by 60 minutes.") #fix this , why only outer ring road 
                 # 
 
         st.divider()
@@ -384,11 +388,11 @@ elif page == "📦 Flipkart Logistics API":
         kpi2.metric("Est. Fleet Delay Avoided", f"{active_chokepoints * 8} mins") 
         
         if active_chokepoints > 150:
-            kpi3.metric("Fleet Routing Protocol", "🏍️ 2-Wheeler EVs", delta="Severe Congestion", delta_color="inverse")
+            kpi3.metric("Fleet Routing Protocol", "2-Wheeler EVs", delta="Severe Congestion", delta_color="inverse")
         elif active_chokepoints > 50:
-            kpi3.metric("Fleet Routing Protocol", "🚙 Light Vans (LMVs)", delta="Moderate Congestion", delta_color="off")
+            kpi3.metric("Fleet Routing Protocol", "Light Vans (LMVs)", delta="Moderate Congestion", delta_color="off")
         else:
-            kpi3.metric("Fleet Routing Protocol", "🚚 Heavy Trucks (HGVs)", delta="Clear Routes", delta_color="normal")
+            kpi3.metric("Fleet Routing Protocol", "Heavy Trucks (HGVs)", delta="Clear Routes", delta_color="normal")
 
         st.markdown(f"#### Active Blockages at {selected_hour}:00")
         
