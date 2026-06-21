@@ -5,7 +5,8 @@ import folium
 from catboost import CatBoostClassifier
 from datetime import datetime
 import streamlit.components.v1 as components
-
+from datetime import datetime
+import pytz
 
 
 st.set_page_config(page_title="GridLock 2.0 - Traffic AI", page_icon="🚦", layout="wide", initial_sidebar_state="expanded")
@@ -165,11 +166,21 @@ elif page == "🚨 Police Command Center":
         junction_name = st.selectbox("Junction Name", JUNCTIONS) 
         st.markdown("##### Temporal Data")
         
-        if "default_time" not in st.session_state:
-            default_date = datetime.now().date()
-            default_time = datetime.now().time()
-        ticket_date = st.date_input("Violation Date", value = default_date)
-        ticket_time = st.time_input("Violation Time", value = default_time)
+        # if "default_time" not in st.session_state:
+        #     default_date = datetime.now().date()
+        #     default_time = datetime.now().time()
+        # ticket_date = st.date_input("Violation Date", value = default_date)
+        # ticket_time = st.time_input("Violation Time", value = default_time)
+        ist_timezone = pytz.timezone("Asia/Kolkata")
+
+        # 2. Freeze the exact time the app is opened into session state ONLY ONCE
+        if "app_load_time" not in st.session_state:
+            st.session_state.app_load_time = datetime.now(ist_timezone)
+
+        # 3. Pass the frozen session state values as the defaults. 
+        # Streamlit will now allow you to edit these freely without overwriting them.
+        ticket_date = st.date_input("Violation Date", value=st.session_state.app_load_time.date())
+        ticket_time = st.time_input("Violation Time", value=st.session_state.app_load_time.time())
 
     with col_geo:
         st.subheader("2. Geospatial Locator")
